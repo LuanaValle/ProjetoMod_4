@@ -5,14 +5,13 @@ import express from "express";
 import cors from 'cors'
 
 // importanto os controllers
-import usuarioController from "./controllers/usuario-controller.js";
-import tarefaController from "./controllers/tarefa-controller.js";
+// import StatusController from "./controllers/status_controller";
 
 // importando os middlewares
-import generalMiddleware from "./middleware/general-middleware.js";
+
 
 // banco de dados do sqlite
-import database from './database/sqlite-db.js'
+// import db from './database/sqlite-db.js'
 
 // Instanciando/criando servidor
 const app = express()
@@ -30,12 +29,11 @@ const corsOptions = {
 app.use(cors(corsOptions))
 
 // Chamada dos Middlewares especificos das rotas
-generalMiddleware(app) // vai ser rodados em todas as rotas
+ // vai ser rodados em todas as rotas
 
 // chamando os controllers passando o servidor (app) 
 // e o banco de dados (bd) como parâmetro
-usuarioController(app, database)
-tarefaController(app, database)
+
 
 // Abrindo o servidor na porta escolhida
 app.listen(port, ()=>{

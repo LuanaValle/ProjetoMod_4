@@ -4,7 +4,7 @@
 class StatusDAO{
 
     constructor(db){
-        this.db = db
+        this.LOCALIZACAO = db
     }
 
     // Metodo responsável pelo acesso aos bancos de dados
@@ -12,9 +12,9 @@ class StatusDAO{
         // O método ira retornar a promise, que será excutada (com .then e .catch)
         // no controller
         return new Promise((resolve, reject)=>{
-            this.db.all('SELECT * FROM STATUS', (error, rows)=>{
+            this.LOCALIZACAO.all('SELECT * FROM STATUS', (error, rows)=>{
                 if(error){
-                    // No reject retorna só o erro para deixar mais f[acil tratar
+                    // No reject retorna só o erro para deixar mais facil tratar
                     reject(error)
                 }else{
                     resolve({
@@ -28,7 +28,7 @@ class StatusDAO{
 
     pegaStatusEntrega = (email)=>{
         return new Promise((resolve, reject)=>{
-            this.db.all('SELECT * FROM STATUS WHERE EMAIL = ?',
+            this.LOCALIZACAO.all('SELECT * FROM STATUS WHERE EMAIL = EMAIL',
             email,
             (error, rows)=>{
                 if(error){
@@ -45,7 +45,7 @@ class StatusDAO{
 
     pegaStatusEntrega = (id)=>{
         return new Promise((resolve, reject)=>{
-            this.db.all('SELECT * FROM STATUS WHERE ID = ?',
+            this.LOCALIZACAO.all('SELECT * FROM STATUS WHERE ID = ID',
             id,
             (error, rows)=>{
                 if(error){
@@ -64,13 +64,13 @@ class StatusDAO{
 
         return new Promise((resolve, reject)=>{
             this.db.run("INSERT INTO STATUS (NOME) VALUES (?)",
-                novoStatus.localizacao, 
+                novoStatus.LOCALIZACAO, 
                 (error)=>{
                 if(error){
                     reject(error)
                 }else{
                     resolve({
-                        "mensagem": `Entrega ${novoStatus.localizacao} exibido com sucesso`,
+                        "mensagem": `Entrega ${novoStatus.LOCALIZACAO} exibido com sucesso`,
                         "status": novoStatus,
                         "erro": false
                     })
@@ -82,7 +82,7 @@ class StatusDAO{
 
     deletaStatus = (id)=>{
         return new Promise((resolve, reject)=>{
-            this.db.run('DELETE FROM STATUS WHERE ID = ?',
+            this.db.run('DELETE FROM STATUS WHERE ID = ID',
             id,
             (error)=>{
                 if(error){
@@ -99,16 +99,16 @@ class StatusDAO{
 
     atualizaStatus = (id, status)=>{
         return new Promise((resolve, reject)=>{
-            this.db.run('UPDATE STATUS SET LOCALIZACAO = ?,
-            'status'.localizacao,
-            id,
+            this.db.run('UPDATE STATUS SET LOCALIZACAO = STATUS,
+            status.LOCALIZACAO,
+            "id",
             (error)=>{
                 if(error){
                     reject(error)
                 }else{
                     resolve({
                         "mensagem": `Localização de id ${id} atualizado com sucesso`,
-                        "status": staus,
+                        "status": status,
                         "erro": false
                     })
                 }

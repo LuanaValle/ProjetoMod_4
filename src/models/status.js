@@ -6,7 +6,7 @@ import StatusSchema from './schema/StatusSchema.js'
 
 class Status{
     constructor(db){
-        this.dao = new UStatusDAO(db)
+        this.dao = new StatusDAO(db)
     }
 
     pegaStatusEntrega = async ()=>{
@@ -33,8 +33,8 @@ class Status{
 
     insereEntrega = async (entrega)=>{
         try {
-            const novaEntrega = new StatusSchema(status.entrega)
-            return await this.dao.insereEntrega(novoEntrega)
+            const novaEntrega = new StatusSchema(Status.entrega)
+            return await this.dao.insereEntrega(novaEntrega)
         } catch (error) {
             return ({
                 "mensagem": error.message,
@@ -64,7 +64,7 @@ class Status{
             await this._verificaEntrega(id)
 
             // utiliza a classe para validação dos dados recebidos
-            const statusAtualizado = new StatusSchema(status.entrega)
+            const statusAtualizado = new StatusSchema(Status.entrega)
 
             return await this.dao.atualizaStatus(id, statusAtualizado)
         } catch (error) {
@@ -78,7 +78,7 @@ class Status{
     //criar um metodo privado que verifica se o dado existe
     _verificaStatus = async (id)=>{
         const resposta = await this.dao.pegaUmStatusId(id)
-        if(resposta.status.length === 0){
+        if(resposta.Status.length === 0){
             throw new Error(`Entrega de id ${id} não existe`)
         }
     }
