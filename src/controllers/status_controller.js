@@ -1,6 +1,6 @@
 import Status from '../models/status.js'
 
-const statusController = (app, bd)=>{
+const StatusController = (app, bd)=>{
     const statusModel = new Status(bd)
 
     app.get('/status', async (req, res)=>{
@@ -9,13 +9,13 @@ const statusController = (app, bd)=>{
 
     })
 
-    app.get('/status/email/:email', async (req, res)=>{
+    //app.get('/status/email/:email', async (req, res)=>{
         // Pegando parametro que sera utilizado para o filtro
-        const email = req.params.email
+        //const email = req.params.email
 
         // Pesquisa o usuario no banco de dados
-        res.json(await statusModel.pegaStatusEntrega(email))
-    })
+       // res.json(await statusModel.pegaStatusEntrega(email))
+   // })
 
     app.post('/status',async (req, res)=>{
         // Recebe o corpo da requisição
@@ -45,4 +45,4 @@ const statusController = (app, bd)=>{
 
 }
 
-export default statusController
+export default StatusController

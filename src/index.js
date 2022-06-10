@@ -4,14 +4,11 @@ import express from "express";
 //Importando CORS
 import cors from 'cors'
 
-// importanto os controllers
-// import StatusController from "./controllers/status_controller";
+import StatusController from "./controllers/status_controller.js";
 
 // importando os middlewares
 
-
-// banco de dados do sqlite
-// import db from './database/sqlite-db.js'
+import db from './database/sqlite_db.js'
 
 // Instanciando/criando servidor
 const app = express()
@@ -33,7 +30,7 @@ app.use(cors(corsOptions))
 
 // chamando os controllers passando o servidor (app) 
 // e o banco de dados (bd) como parâmetro
-
+StatusController(app, db)
 
 // Abrindo o servidor na porta escolhida
 app.listen(port, ()=>{

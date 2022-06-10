@@ -9,9 +9,9 @@ Este Projeto tem como objetivo criar uma API RESful de uma Transportadora, onde 
 ### Pacotes Utilizados
    Express v.4.17.3
    Nodemon v.2.0.15
-   SQlite v.5.0.0
-   Jest v.27.5.1
-   Supertest v.6.2.2
+   SQlite v.5.0.2
+   Cors v.2.8.5
+  
 ### Instalação
    Abra o terminal/Powershell e rode os comandos:
    Clonando o repositório:

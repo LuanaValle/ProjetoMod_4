@@ -26,23 +26,6 @@ class StatusDAO{
         })
     }
 
-    pegaStatusEntrega = (email)=>{
-        return new Promise((resolve, reject)=>{
-            this.LOCALIZACAO.all('SELECT * FROM STATUS WHERE EMAIL = EMAIL',
-            email,
-            (error, rows)=>{
-                if(error){
-                    reject(error)
-                }else{
-                    resolve({
-                        "status": rows,
-                        "erro": false
-                    })
-                }
-            })
-        })
-    }
-
     pegaStatusEntrega = (id)=>{
         return new Promise((resolve, reject)=>{
             this.LOCALIZACAO.all('SELECT * FROM STATUS WHERE ID = ID',
@@ -99,7 +82,7 @@ class StatusDAO{
 
     atualizaStatus = (id, status)=>{
         return new Promise((resolve, reject)=>{
-            this.db.run('UPDATE STATUS SET LOCALIZACAO = STATUS,
+            this.db.run('UPDATE STATUS SET LOCALIZACAO = STATUS',
             status.LOCALIZACAO,
             "id",
             (error)=>{
