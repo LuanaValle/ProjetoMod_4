@@ -23,18 +23,18 @@ class Status{
     pegaUmaEntrega = async (email)=>{
         try {
             return await this.dao.pegaUmaEntrega(email)
-        } catch (error) {
+       } catch (error) {
             return {
                 "mensagem": error.message,
-                "erro" : true
+               "erro" : true
             }
         }
     }
 
-    insereEntrega = async (entrega)=>{
+    insereStatus = async (entrega)=>{
         try {
-            const novaEntrega = new StatusSchema(Status.entrega)
-            return await this.dao.insereEntrega(novaEntrega)
+            const novaEntrega = new StatusSchema(entrega)
+            return await this.dao.insereStatus(novaEntrega)
         } catch (error) {
             return ({
                 "mensagem": error.message,

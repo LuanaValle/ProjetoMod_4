@@ -4,7 +4,7 @@
 class StatusDAO{
 
     constructor(db){
-        this.LOCALIZACAO = db
+        this.db = db
     }
 
     // Metodo responsável pelo acesso aos bancos de dados
@@ -12,7 +12,7 @@ class StatusDAO{
         // O método ira retornar a promise, que será excutada (com .then e .catch)
         // no controller
         return new Promise((resolve, reject)=>{
-            this.LOCALIZACAO.all('SELECT * FROM STATUS', (error, rows)=>{
+            this.db.all('SELECT * FROM STATUS', (error, rows)=>{
                 if(error){
                     // No reject retorna só o erro para deixar mais facil tratar
                     reject(error)
@@ -28,7 +28,7 @@ class StatusDAO{
 
     pegaStatusEntrega = (id)=>{
         return new Promise((resolve, reject)=>{
-            this.LOCALIZACAO.all('SELECT * FROM STATUS WHERE ID = ID',
+            this.db.all('SELECT * FROM STATUS WHERE ID = ID',
             id,
             (error, rows)=>{
                 if(error){
@@ -46,7 +46,7 @@ class StatusDAO{
     insereStatus = (novoStatus) =>{
 
         return new Promise((resolve, reject)=>{
-            this.db.run("INSERT INTO STATUS (NOME) VALUES (?)",
+            this.db.run("INSERT INTO STATUS (STATUS, LOCALIZACAO) VALUES (?, ?)",
                 novoStatus.LOCALIZACAO, 
                 (error)=>{
                 if(error){
@@ -65,7 +65,7 @@ class StatusDAO{
 
     deletaStatus = (id)=>{
         return new Promise((resolve, reject)=>{
-            this.db.run('DELETE FROM STATUS WHERE ID = ID',
+            this.db.run('DELETE FROM STATUS WHERE ID = ?',
             id,
             (error)=>{
                 if(error){
